@@ -8,11 +8,6 @@ body {
   background-color:black;
   height: 100vh;
   font-family: 'East Sea Dokdo', cursive;
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin: 0; */
 }
 
 .wrapper {
