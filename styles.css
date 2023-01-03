@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #111;
+  background-color:black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +16,7 @@ body {
 
 .container {
   width: 960px;
+  height: 960px;
 }
 
 .grid {
@@ -27,9 +28,9 @@ body {
 }
 
 .square {
-  width: 16px;
-  height: 16px;
-  transition: 5s ease;
+  width: 20px;
+  height: 20px;
+  transition: 10s ease;
   background-color: white;
 }
 
@@ -38,8 +39,12 @@ body {
 }
 
 button {
-  padding: 20px;
-  background-color: lightblue;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 50px 0;
+  background-color: rgb(28, 0, 121);
   border-radius: 20px;
 }
 
