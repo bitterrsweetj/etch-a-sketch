@@ -1,20 +1,58 @@
-
 const btnGrid = document.querySelector('.button-grid');
-const btnBlack = document.querySelector('.button-black');
-const btnRainbow = document.querySelector('.button-rainbow');
-const btnShading = document.querySelector('.button-shading');
-const btnEraser = document.querySelector('.button-eraser');
-
-const container = document.querySelector('.container');
-const grid = document.createElement('div');
-grid.classList.add('grid');
-container.appendChild(grid);
-let gridSize = 16;
+let color = 'black';
+const COLORS = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', 'ffc6ff'];
 
 
+function createGrid(gridSize) {
+  const grid = document.querySelector('.grid');
+  const squares = document.querySelectorAll('.square');
+  squares.forEach(item => item.remove());
 
-function addShading(event) {
-  const element = event.target;
+  grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+
+  for (let i = 0; i < Math.pow(gridSize, 2); i++) {
+    const square = document.createElement('div');
+    square.classList.add('square');
+    square.addEventListener('mouseover', addColor);
+    grid.appendChild(square);
+  }
+
+}
+
+createGrid(16);
+
+function changeSize(input) {
+  if (input >= 2 && input <= 100) {
+    createGrid(input);
+  } else {
+    console.log('error');
+  }
+}
+
+function addColor() {
+  if (color === 'random') {
+    randomIndex = Math.floor(Math.random() * COLORS.length);
+    this.style.backgroundColor = COLORS[randomIndex];
+    // this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  } else if (color === 'shading') {
+    addShading(this);
+  }
+  else {
+    this.style.backgroundColor = color;
+  }
+}
+
+function changeColor(choice) {
+  color = choice;
+}
+
+function resetGrid() {
+  const squares = document.querySelectorAll('.square');
+  squares.forEach(item => item.style.backgroundColor = 'white');
+}
+
+function addShading(element) {
   let elementColor = window.getComputedStyle(element).backgroundColor;
   switch (elementColor) {
     case 'rgb(255, 255, 255)':
@@ -47,80 +85,4 @@ function addShading(event) {
   }
 }
 
-function addColor(event) {
-  const element = event.target;
-  element.style.backgroundColor = 'black';
-}
 
-function addRainbowColor(event) {
-  const element = event.target;
-  element.style.backgroundColor = randomColor();
-}
-
-
-function removeColor(event) {
-  const element = event.target;
-  element.style.backgroundColor = 'white';
-}
-
-function randomColor() {
-  const COLORS = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', 'ffc6ff'];
-  randomIndex = Math.floor(Math.random() * COLORS.length);
-  return COLORS[randomIndex];
-}
-
-
-btnGrid.addEventListener('click', () => {
-  input = prompt('Input grid size', 16);
-  gridSize = parseInt(input);
-  if (gridSize > 100) {
-    gridSize = 100;
-  } else if (input === null) {
-    gridSize = 16;
-  }
-  removeGrid();
-  createGrid(gridSize);
-})
-
-btnBlack.addEventListener('click', () => {
-  removeGrid();
-  createGrid(gridSize, addColor);
-})
-
-btnRainbow.addEventListener('click', () => {
-  removeGrid();
-  createGrid(gridSize, addRainbowColor);
-})
-btnShading.addEventListener('click', () => {
-  removeGrid();
-  createGrid(gridSize, addShading);
-})
-
-btnEraser.addEventListener('click', () => {
-  removeGrid();
-  createGrid(gridSize, addColor);
-})
-
-function createGrid(gridSize, action) {
-  grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-  grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
-
-  for (let i = 0; i < Math.pow(gridSize, 2); i++) {
-    const div = document.createElement('div');
-    div.classList.add('square');
-    div.addEventListener('mouseover', action);
-
-    // div.addEventListener('mouseleave', removeColor);
-
-    grid.appendChild(div);
-  }
-
-}
-
-function removeGrid() {
-  const squares = document.querySelectorAll('.square');
-  squares.forEach(item => {
-    item.remove();
-  })
-}
-createGrid(gridSize, addColor);

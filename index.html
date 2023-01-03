@@ -17,14 +17,19 @@
   <div class="wrapper">
     <h1>Etch-a-Sketch</h1>
     <div class="container">
-    </div>
-    <div class="buttons">
-      <input type="text" placeholder="Board size" value="16" onchange="changeSize(this.value)">
-      <button class="button-grid">Grid size</button>
-      <button class="button-black">Black</button>
-      <button class="button-rainbow">Rainbow</button>
-      <button class="button-shading">Shading</button>
-      <button class="button-eraser">Eraser</button>
+      <div class="buttons">
+        <div class="button-box">
+          <input type="text" placeholder="Board size" value="16" onchange="changeSize(this.value)">
+          <button class="button-grid">Set grid</button>
+        </div>
+        <button class="button-black" onclick="changeColor('black')">Black</button>
+        <button class="button-random" onclick="changeColor('random')">Random</button>
+        <button class="button-shading" onclick="changeColor('shading')">Shading</button>
+        <button class="button-eraser" onclick="changeColor('white')">Eraser</button>
+        <button class="button-reset" onclick="resetGrid()">Reset</button>
+      </div>
+      <div class="grid">
+      </div>
     </div>
   </div>
 </body>
