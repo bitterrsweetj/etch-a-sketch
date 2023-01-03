@@ -1,4 +1,3 @@
-const container = document.querySelector('.container');
 
 const btnGrid = document.querySelector('.button-grid');
 const btnBlack = document.querySelector('.button-black');
@@ -6,7 +5,7 @@ const btnRainbow = document.querySelector('.button-rainbow');
 const btnShading = document.querySelector('.button-shading');
 const btnEraser = document.querySelector('.button-eraser');
 
-
+const container = document.querySelector('.container');
 const grid = document.createElement('div');
 grid.classList.add('grid');
 container.appendChild(grid);
@@ -71,7 +70,7 @@ function randomColor() {
 }
 
 
-btnGrid.addEventListener('click', () =>  {
+btnGrid.addEventListener('click', () => {
   input = prompt('Input grid size', 16);
   gridSize = parseInt(input);
   if (gridSize > 100) {
@@ -99,24 +98,23 @@ btnShading.addEventListener('click', () => {
 
 btnEraser.addEventListener('click', () => {
   removeGrid();
-  createGrid(gridSize, removeColor);
+  createGrid(gridSize, addColor);
 })
 
 function createGrid(gridSize, action) {
+  grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+
   for (let i = 0; i < Math.pow(gridSize, 2); i++) {
     const div = document.createElement('div');
     div.classList.add('square');
     div.addEventListener('mouseover', action);
-    
+
     // div.addEventListener('mouseleave', removeColor);
 
     grid.appendChild(div);
   }
 
-  
-
-  grid.style.gridTemplateColumns = `repeat(${gridSize}, auto)`;
-  grid.style.gridTemplateRows = `repeat(${gridSize}, auto)`;
 }
 
 function removeGrid() {
@@ -125,4 +123,4 @@ function removeGrid() {
     item.remove();
   })
 }
-createGrid(gridSize);
+createGrid(gridSize, addColor);

@@ -6,21 +6,38 @@
 
 body {
   background-color:black;
-  display: flex;
+  height: 100vh;
+  font-family: 'East Sea Dokdo', cursive;
+  /* display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   overflow: hidden;
-  margin: 0;
+  margin: 0; */
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+}
 .container {
-  width: 960px;
-  height: 960px;
 }
 
+h1 {
+  background: -webkit-linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 60px;
+  margin-bottom: 45px;
+  text-transform: uppercase;
+}
 .grid {
   display: grid;
+  width: 500px;
+  height: 500px;
   justify-content: center;
   max-width: 100%;
   flex-wrap: wrap;
@@ -28,8 +45,6 @@ body {
 }
 
 .square {
-  width: 20px;
-  height: 20px;
   transition: 10s ease;
   background-color: white;
 }
@@ -42,10 +57,14 @@ button {
   cursor: pointer;
   color: white;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 15px 25px;
   margin: 50px 0;
   background-color: rgb(28, 0, 121);
-  border-radius: 20px;
+  border-radius: 10px;
+}
+
+.button-rainbow {
+  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
 }
 
 
